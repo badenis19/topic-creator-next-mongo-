@@ -7,5 +7,17 @@ export async function POST(request) {
   await connectMongoDB();
   await Topic.create({ title, description });
   return NextResponse.json({ message: "Topic created" }, { status: 201 });
-  NextRespon
+}
+
+export async function GET(request) {
+  await connectMongoDB();
+  const topics = await Topic.find();
+  return NextResponse.json({ topics });
+}
+
+export async function DELETE(request) {
+  const id = request.nextUrl.searchParams.get("id");
+  await connectMongoDB();
+  await Topic.findByIdAndDelete(id);
+  return NextResponse.json({ message: "Topic deleted" }, { status: 200 });
 }
