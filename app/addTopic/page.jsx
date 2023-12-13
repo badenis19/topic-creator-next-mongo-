@@ -26,8 +26,6 @@ const AddTopic = () => {
         body: JSON.stringify({ title, description }),
       });
 
-      console.log(">", res);
-
       if (res.ok) {
         router.push("/");
         router.refresh();
